@@ -1,8 +1,8 @@
+import Card from "@/app/components/Card";
+
 export default function Landing() {
   return (
     <div className="bg-white">
-      
-
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -24,6 +24,9 @@ export default function Landing() {
             <p className="mt-6 text-lg leading-8 text-gray-600">
               Spend less time tracking and more time engaging.
             </p>
+
+            <Card />
+
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
                 href="/signin"
