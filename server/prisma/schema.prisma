@@ -15,7 +15,17 @@ model InstagramPost {
   user        ClerkUser? @relation(fields: [clerkUserId], references: [id], onDelete: Cascade)
 }
 
+model ToDo {
+  id          Int       @id @default(autoincrement())
+  date        DateTime
+  description String
+  done        Boolean 
+  clerkUserId String   
+  user        ClerkUser? @relation(fields: [clerkUserId], references: [id], onDelete: Cascade)
+}
+
 model ClerkUser {
   id       String    @id
   expenses InstagramPost[]
+  todos    ToDo[]
 }

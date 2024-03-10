@@ -1,8 +1,10 @@
 import { auth } from '@clerk/nextjs';
 import Card from '@/app/components/Card';
-import MySignInButton from '@/app/components/MySignInButton';
 import Bokeh from '@/app/components/design/Bokeh';
 import Bokeh2 from '@/app/components/design/Bokeh2';
+import MySignInButton from '@/app/components/MySignInButton';
+import TodoForm from '@/app/components/TodoForm';
+import Todos from '@/app/components/Todos';
 
 export default function Landing() {
   const { userId } = auth();
@@ -47,6 +49,8 @@ export default function Landing() {
       <Bokeh />
       <Bokeh2 />
       <h3>signed in</h3>
+      <TodoForm />
+      <Todos />
     </section>
   );
 }
