@@ -12,10 +12,14 @@ export const getToDos = async (
       throw new Error("Unauthorized: no user ID provided");
     }
 
-    const todos = await prisma.toDo.findMany({});
+    const todos = await prisma.toDo.findMany({
+      where: {
+        clerkUserId: req.auth.userId,
+      },
 
-    console.log("todos", todos);
-    res.json({ todos });
+    });
+
+    res.json(todos);
   } catch (error) {
     console.log(error);
     res.status(500).send(`Internal server error ${error}`);
