@@ -22,7 +22,7 @@ const CheckSignedIn = () => {
       </SignedIn>
       <SignedOut>
         <SignInButton>
-          <button className="text-white">Sign in</button>
+          <button>Sign in</button>
         </SignInButton>
       </SignedOut>
     </>

@@ -1,4 +1,6 @@
-export const APP_NAME = "SM Tracker";
+export const APP_NAME = "SmallTrack";
+
+export const APP_DESCRIPTION = "The best way to track your social media."
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
