@@ -14,7 +14,7 @@ CREATE TABLE "ToDo" (
     "date" TIMESTAMP(3) NOT NULL,
     "description" TEXT NOT NULL,
     "done" BOOLEAN NOT NULL,
-    "clerkUserId" TEXT,
+    "clerkUserId" TEXT NOT NULL,
 
     CONSTRAINT "ToDo_pkey" PRIMARY KEY ("id")
 );

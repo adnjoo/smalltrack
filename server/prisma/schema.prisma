@@ -20,7 +20,7 @@ model ToDo {
   date        DateTime
   description String
   done        Boolean 
-  clerkUserId String?   
+  clerkUserId String   
   user        ClerkUser? @relation(fields: [clerkUserId], references: [id], onDelete: Cascade)
 }
 
