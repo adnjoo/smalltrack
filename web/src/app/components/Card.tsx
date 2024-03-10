@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { API_URL } from "@/app/lib/utils";
+import { API_URL } from "@/app/lib/constants";
 
 export default function Card() {
   const [data, setData] = useState("");
