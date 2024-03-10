@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { UserButton, SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
+import { UserButton, SignedIn, SignedOut } from "@clerk/nextjs";
+import MySignInButton from "@/app/components/MySignInButton";
 import { APP_NAME } from "@/app/lib/constants";
 
 const navigation = [
@@ -21,9 +22,9 @@ const CheckSignedIn = () => {
         <UserButton afterSignOutUrl="/" />
       </SignedIn>
       <SignedOut>
-        <SignInButton>
+        <MySignInButton>
           <button>Sign in</button>
-        </SignInButton>
+        </MySignInButton>
       </SignedOut>
     </>
   );
