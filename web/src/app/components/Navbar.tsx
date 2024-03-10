@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { APP_NAME } from "@/app/lib/utils";
+import { UserButton, SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
+import { APP_NAME } from "@/app/lib/constants";
 
 const navigation = [
   { name: "Features", href: "/features" },
@@ -12,6 +13,21 @@ const navigation = [
   { name: "Blog", href: "/blog" },
   { name: "About", href: "/about" },
 ];
+
+const CheckSignedIn = () => {
+  return (
+    <>
+      <SignedIn>
+        <UserButton afterSignOutUrl="/" />
+      </SignedIn>
+      <SignedOut>
+        <SignInButton>
+          <button className="text-white">Sign in</button>
+        </SignInButton>
+      </SignedOut>
+    </>
+  );
+};
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -54,12 +70,7 @@ export default function Navbar() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a
-            href="/signin"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Log in <span aria-hidden="true">&rarr;</span>
-          </a>
+          <CheckSignedIn />
         </div>
       </nav>
       <Dialog
@@ -102,12 +113,7 @@ export default function Navbar() {
                 ))}
               </div>
               <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </a>
+                <CheckSignedIn />
               </div>
             </div>
           </div>
