@@ -25,7 +25,7 @@ export default function Todos() {
     <div>
       <h1>Todos</h1>
       {data &&
-        data?.map((todo) => (
+        data?.map((todo: any) => (
           <div key={todo.id}>
             {todo.description}
             <input type='checkbox' checked={todo.done} />
