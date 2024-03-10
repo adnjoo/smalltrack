@@ -9,6 +9,16 @@ CREATE TABLE "InstagramPost" (
 );
 
 -- CreateTable
+CREATE TABLE "ToDo" (
+    "id" SERIAL NOT NULL,
+    "date" TIMESTAMP(3) NOT NULL,
+    "description" TEXT NOT NULL,
+    "done" BOOLEAN NOT NULL,
+
+    CONSTRAINT "ToDo_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "ClerkUser" (
     "id" TEXT NOT NULL,
 
