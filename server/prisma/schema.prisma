@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model InstagramPost {
+  id          Int       @id @default(autoincrement())
+  date        DateTime
+  description String
+  clerkUserId String?   
+  user        ClerkUser? @relation(fields: [clerkUserId], references: [id], onDelete: Cascade)
+}
+
+model ClerkUser {
+  id       String    @id
+  expenses InstagramPost[]
+}
