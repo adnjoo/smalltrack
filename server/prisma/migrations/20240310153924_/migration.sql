@@ -14,6 +14,7 @@ CREATE TABLE "ToDo" (
     "date" TIMESTAMP(3) NOT NULL,
     "description" TEXT NOT NULL,
     "done" BOOLEAN NOT NULL,
+    "clerkUserId" TEXT,
 
     CONSTRAINT "ToDo_pkey" PRIMARY KEY ("id")
 );
@@ -27,3 +28,6 @@ CREATE TABLE "ClerkUser" (
 
 -- AddForeignKey
 ALTER TABLE "InstagramPost" ADD CONSTRAINT "InstagramPost_clerkUserId_fkey" FOREIGN KEY ("clerkUserId") REFERENCES "ClerkUser"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ToDo" ADD CONSTRAINT "ToDo_clerkUserId_fkey" FOREIGN KEY ("clerkUserId") REFERENCES "ClerkUser"("id") ON DELETE CASCADE ON UPDATE CASCADE;
