@@ -48,7 +48,7 @@ export default function Landing() {
     <section className='mx-auto min-h-screen max-w-2xl py-32 sm:py-48 lg:py-56'>
       <Bokeh />
       <Bokeh2 />
-      <h3>signed in</h3>
+
       <TodoForm />
       <Todos />
     </section>
