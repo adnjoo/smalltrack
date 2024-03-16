@@ -1,4 +1,5 @@
 'use client';
+
 import React from 'react';
 import axios from 'axios';
 import { useAuth } from '@clerk/nextjs';
@@ -25,15 +26,17 @@ export default function Todos() {
   });
 
   return (
-    <div>
-      <h1>Todos</h1>
-      {data &&
-        data?.map((todo: any) => (
-          <div key={todo.id}>
-            {todo.description}
-            <input type='checkbox' checked={todo.done} />
-          </div>
-        ))}
+    <div className="max-w-md mx-auto">
+      <h1 className="text-3xl font-bold mb-4">Todos</h1>
+      <div>
+        {data &&
+          data?.map((todo: any) => (
+            <div key={todo.id} className="flex items-center mb-2">
+              <input type="checkbox" checked={todo.done} className="mr-2 form-checkbox" />
+              <span className={todo.done ? "line-through" : ""}>{todo.description}</span>
+            </div>
+          ))}
+      </div>
     </div>
   );
 }
