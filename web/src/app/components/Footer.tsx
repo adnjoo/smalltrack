@@ -20,7 +20,7 @@ const footerNavigation = {
     },
     {
       name: 'GitHub',
-      href: 'https://github.com/adnjoo',
+      href: 'https://github.com/adnjoo/smalltrack',
       icon: (props: any) => (
         <svg fill='currentColor' viewBox='0 0 24 24' {...props}>
           <path
@@ -58,6 +58,7 @@ export default function Footer() {
             key={item.name}
             href={item.href}
             className='text-gray-400 hover:text-gray-500'
+            target='_blank'
           >
             <span className='sr-only'>{item.name}</span>
             <item.icon className='h-6 w-6' aria-hidden='true' />
