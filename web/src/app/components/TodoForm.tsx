@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '@/app/lib/constants';
 import { useAuth } from '@clerk/nextjs';
+import { useQuery } from '@tanstack/react-query';
 
 export default function TodoForm() {
   const [formData, setFormData] = useState({
@@ -11,6 +12,9 @@ export default function TodoForm() {
     done: false,
   });
   const { getToken } = useAuth();
+  const { refetch } = useQuery({
+    queryKey: ['todos'],
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -39,6 +43,8 @@ export default function TodoForm() {
         description: '',
         done: false,
       });
+
+      refetch();
     } catch (error) {
       // Handle errors
       console.error('Error submitting form:', error);
