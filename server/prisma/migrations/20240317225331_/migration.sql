@@ -14,7 +14,7 @@ CREATE TABLE "Link" (
     "link" TEXT NOT NULL,
     "date" TIMESTAMP(3) NOT NULL,
     "description" TEXT NOT NULL,
-    "project" TEXT NOT NULL,
+    "project" TEXT,
     "clerkUserId" TEXT,
 
     CONSTRAINT "Link_pkey" PRIMARY KEY ("id")

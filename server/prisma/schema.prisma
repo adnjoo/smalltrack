@@ -20,7 +20,7 @@ model Link {
   link        String
   date        DateTime
   description String
-  project     String
+  project     String?
   clerkUserId String?
   user        ClerkUser? @relation(fields: [clerkUserId], references: [id], onDelete: Cascade)
 }
