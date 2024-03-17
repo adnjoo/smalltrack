@@ -36,7 +36,7 @@ app.post("/ig/upsert", ClerkExpressRequireAuth({}), upsertIGPost);
 
 app.get("/todos", ClerkExpressRequireAuth({}), getToDos);
 app.post("/todos/upsert", ClerkExpressRequireAuth({}), upsertToDo);
-app.delete("/todos/:id", ClerkExpressRequireAuth({}), getToDos);
+app.delete("/todos/delete/:id", ClerkExpressRequireAuth({}), deleteToDo);
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
