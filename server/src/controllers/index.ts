@@ -1,2 +1,2 @@
 export * from "./instagramController";
-export * from "./todoController";
+export * from "./linkController";

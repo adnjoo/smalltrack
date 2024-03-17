@@ -1,34 +1,34 @@
 import { Request, Response } from "express";
 import { WithAuthProp } from "@clerk/clerk-sdk-node";
-import type { ToDo } from "@prisma/client";
+import type { Link } from "@prisma/client";
 
 import prisma from "../db";
 
-export const getToDos = async (
+export const getLinks = async (
   req: WithAuthProp<Request>,
   res: Response
-): Promise<ToDo[] | void> => {
+): Promise<Link[] | void> => {
   try {
-    const todos = await prisma.toDo.findMany({
+    const links = await prisma.link.findMany({
       where: {
         clerkUserId: req.auth.userId as string,
       },
     });
 
-    res.json(todos);
+    res.json(links);
   } catch (error) {
     console.log(error);
     res.status(500).send(`Internal server error ${error}`);
   }
 };
 
-export const upsertToDo = async (
+export const upsertLink = async (
   req: WithAuthProp<Request>,
   res: Response
-): Promise<ToDo | void> => {
+): Promise<Link | void> => {
   try {
     let user;
-    let toDo;
+    let dbLink;
 
     user = await prisma.clerkUser.findUnique({
       where: { id: req.auth.userId as string },
@@ -40,62 +40,61 @@ export const upsertToDo = async (
       });
     }
 
-    const { id, description, done, date } = req.body;
+    const { id, description, link, date } = req.body;
 
     if (id) {
-      toDo = await prisma.toDo.update({
+      dbLink = await prisma.link.update({
         where: {
           id,
         },
         data: {
           date,
           description,
-          done,
+          link,
         },
       });
-      res.json({ toDo });
     } else {
-      toDo = await prisma.toDo.create({
+      dbLink = await prisma.link.create({
         data: {
           date: new Date(),
           description,
-          done,
+          link,
           clerkUserId: req.auth.userId as string,
         },
       });
     }
 
-    res.json({ toDo });
+    res.json({ dbLink });
   } catch (error) {
     console.log(error);
     res.status(500).send(`Internal server error ${error}`);
   }
 };
 
-export const deleteToDo = async (
+export const deleteLink = async (
   req: WithAuthProp<Request>,
   res: Response
 ): Promise<void> => {
   try {
     const id = Number(req.params.id);
 
-    const toDo = await prisma.toDo.findUnique({
+    const dbLink = await prisma.link.findUnique({
       where: {
         id,
       },
     });
 
-    if (!toDo) {
+    if (!dbLink) {
       res.status(404).send("ToDo item not found");
       return;
     }
 
-    if (toDo.clerkUserId !== req.auth.userId) {
+    if (dbLink.clerkUserId !== req.auth.userId) {
       res.status(403).send("Unauthorized");
       return;
     }
 
-    await prisma.toDo.delete({
+    await prisma.link.delete({
       where: {
         id,
       },

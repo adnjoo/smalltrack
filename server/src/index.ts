@@ -6,9 +6,9 @@ import { ClerkExpressRequireAuth, LooseAuthProp } from "@clerk/clerk-sdk-node";
 import {
   getIGPosts,
   upsertIGPost,
-  getToDos,
-  upsertToDo,
-  deleteToDo,
+  getLinks,
+  upsertLink,
+  deleteLink,
 } from "./controllers";
 
 dotenv.config();
@@ -34,10 +34,11 @@ app.get("/", (req, res) => {
 app.get("/ig/posts", ClerkExpressRequireAuth({}), getIGPosts);
 app.post("/ig/upsert", ClerkExpressRequireAuth({}), upsertIGPost);
 
-app.get("/todos", ClerkExpressRequireAuth({}), getToDos);
-app.post("/todos/upsert", ClerkExpressRequireAuth({}), upsertToDo);
-app.delete("/todos/delete/:id", ClerkExpressRequireAuth({}), deleteToDo);
+app.get("/links", ClerkExpressRequireAuth({}), getLinks);
+app.post("/links/upsert", ClerkExpressRequireAuth({}), upsertLink);
+app.delete("/links/delete/:id", ClerkExpressRequireAuth({}), deleteLink);
 
+// CORS
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
