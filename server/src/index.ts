@@ -35,7 +35,7 @@ app.get("/ig/posts", ClerkExpressRequireAuth({}), getIGPosts);
 app.post("/ig/upsert", ClerkExpressRequireAuth({}), upsertIGPost);
 
 app.get("/links", ClerkExpressRequireAuth({}), getLinks);
-app.post("/links/upsert", ClerkExpressRequireAuth({}), upsertLink);
+app.post("/links/upsert/:id", ClerkExpressRequireAuth({}), upsertLink);
 app.delete("/links/delete/:id", ClerkExpressRequireAuth({}), deleteLink);
 
 // CORS

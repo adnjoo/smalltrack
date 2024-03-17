@@ -40,7 +40,8 @@ export const upsertLink = async (
       });
     }
 
-    const { id, description, link, date } = req.body;
+    const id = Number(req.params.id);
+    const { description, link, date } = req.body;
 
     if (id) {
       dbLink = await prisma.link.update({
