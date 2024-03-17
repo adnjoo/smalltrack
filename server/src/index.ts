@@ -1,7 +1,8 @@
 import express, { type Application } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import { ClerkExpressWithAuth, LooseAuthProp } from "@clerk/clerk-sdk-node";
+import { ClerkExpressRequireAuth, LooseAuthProp } from "@clerk/clerk-sdk-node";
+
 import { getIGPosts, upsertIGPost } from "./controllers/instagramController";
 import { getToDos, upsertToDo } from "./controllers/todoController";
 
@@ -25,11 +26,11 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/ig/posts", ClerkExpressWithAuth({}), getIGPosts);
-app.post("/ig/upsert", ClerkExpressWithAuth({}), upsertIGPost);
+app.get("/ig/posts", ClerkExpressRequireAuth({}), getIGPosts);
+app.post("/ig/upsert", ClerkExpressRequireAuth({}), upsertIGPost);
 
-app.get("/todos", ClerkExpressWithAuth({}), getToDos);
-app.post("/todos/upsert", ClerkExpressWithAuth({}), upsertToDo);
+app.get("/todos", ClerkExpressRequireAuth({}), getToDos);
+app.post("/todos/upsert", ClerkExpressRequireAuth({}), upsertToDo);
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
