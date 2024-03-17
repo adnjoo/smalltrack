@@ -3,8 +3,13 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { ClerkExpressRequireAuth, LooseAuthProp } from "@clerk/clerk-sdk-node";
 
-import { getIGPosts, upsertIGPost } from "./controllers/instagramController";
-import { getToDos, upsertToDo } from "./controllers/todoController";
+import {
+  getIGPosts,
+  upsertIGPost,
+  getToDos,
+  upsertToDo,
+  deleteToDo,
+} from "./controllers";
 
 dotenv.config();
 
@@ -31,6 +36,7 @@ app.post("/ig/upsert", ClerkExpressRequireAuth({}), upsertIGPost);
 
 app.get("/todos", ClerkExpressRequireAuth({}), getToDos);
 app.post("/todos/upsert", ClerkExpressRequireAuth({}), upsertToDo);
+app.delete("/todos/:id", ClerkExpressRequireAuth({}), getToDos);
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");

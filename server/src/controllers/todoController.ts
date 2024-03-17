@@ -13,11 +13,9 @@ export const getToDos = async (
       where: {
         clerkUserId: req.auth.userId as string,
       },
-
     });
 
     res.json(todos);
-
   } catch (error) {
     console.log(error);
     res.status(500).send(`Internal server error ${error}`);
@@ -68,7 +66,42 @@ export const upsertToDo = async (
     }
 
     res.json({ toDo });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(`Internal server error ${error}`);
+  }
+};
 
+export const deleteToDo = async (
+  req: WithAuthProp<Request>,
+  res: Response
+): Promise<void> => {
+  try {
+    const id = Number(req.params.id);
+
+    const toDo = await prisma.toDo.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!toDo) {
+      res.status(404).send("ToDo item not found");
+      return;
+    }
+
+    if (toDo.clerkUserId !== req.auth.userId) {
+      res.status(403).send("Unauthorized");
+      return;
+    }
+
+    await prisma.toDo.delete({
+      where: {
+        id,
+      },
+    });
+
+    res.status(204).send();
   } catch (error) {
     console.log(error);
     res.status(500).send(`Internal server error ${error}`);
