@@ -8,24 +8,34 @@ datasource db {
 }
 
 model InstagramPost {
-  id          Int       @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   date        DateTime
   description String
-  clerkUserId String?   
+  clerkUserId String?
   user        ClerkUser? @relation(fields: [clerkUserId], references: [id], onDelete: Cascade)
 }
 
-model ToDo {
-  id          Int       @id @default(autoincrement())
+model Link {
+  id          Int        @id @default(autoincrement())
+  link        String
   date        DateTime
   description String
-  done        Boolean 
-  clerkUserId String   
+  project     String
+  clerkUserId String?
   user        ClerkUser? @relation(fields: [clerkUserId], references: [id], onDelete: Cascade)
+}
+
+model Project {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String
+  clerkUserId String?
+  users       ClerkUser? @relation(fields: [clerkUserId], references: [id], onDelete: Cascade)
 }
 
 model ClerkUser {
-  id       String    @id
-  expenses InstagramPost[]
-  todos    ToDo[]
+  id             String          @id
+  instagramPosts InstagramPost[]
+  todos          Link[]
+  projects       Project[]
 }
