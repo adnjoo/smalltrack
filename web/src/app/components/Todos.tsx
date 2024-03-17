@@ -9,7 +9,7 @@ import { API_URL } from '@/app/lib/constants';
 
 export default function Todos() {
   const { getToken } = useAuth();
-  const { data } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ['todos'],
     queryFn: async () => {
       try {
@@ -25,15 +25,35 @@ export default function Todos() {
     },
   });
 
+  const handleDelete = async (id: number) => {
+    try {
+      await axios.delete(`${API_URL}/todos/delete/${id}`, {
+        headers: {
+          Authorization: `Bearer ${await getToken()}`,
+        },
+      });
+      refetch();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div className="max-w-md mx-auto">
       <h1 className="text-3xl font-bold mb-4">Todos</h1>
       <div>
+        {isLoading && <p>Loading...</p>}
         {data &&
           data?.map((todo: any) => (
             <div key={todo.id} className="flex items-center mb-2">
               <input type="checkbox" checked={todo.done} className="mr-2 form-checkbox" />
               <span className={todo.done ? "line-through" : ""}>{todo.description}</span>
+              <button
+                onClick={() => handleDelete(todo.id)}
+                className="ml-2 text-red-500"
+              >
+                Delete
+              </button>
             </div>
           ))}
       </div>
