@@ -36,6 +36,6 @@ model Project {
 model ClerkUser {
   id             String          @id
   instagramPosts InstagramPost[]
-  todos          Link[]
+  links          Link[]
   projects       Project[]
 }
