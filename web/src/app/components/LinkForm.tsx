@@ -2,25 +2,26 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+
 import { API_URL } from '@/app/lib/constants';
 import { useAuth } from '@clerk/nextjs';
 import { useQuery } from '@tanstack/react-query';
 
-export default function TodoForm() {
+export default function LinkForm() {
   const [formData, setFormData] = useState({
     description: '',
-    done: false,
+    link: '',
   });
   const { getToken } = useAuth();
   const { refetch } = useQuery({
-    queryKey: ['todos'],
+    queryKey: ['links'],
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: value,
     }));
   };
 
@@ -30,31 +31,39 @@ export default function TodoForm() {
     const token = await getToken();
 
     try {
-      // Send a POST request to the API endpoint
-      const response = await axios.post(`${API_URL}/todos/upsert`, formData, {
+      const response = await axios.post(`${API_URL}/links/upsert`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      // Handle the response as needed
       console.log('API response:', response.data);
 
-      // Clear the form after successful submission (optional)
       setFormData({
         description: '',
-        done: false,
+        link: '',
       });
 
       refetch();
     } catch (error) {
-      // Handle errors
       console.error('Error submitting form:', error);
     }
   };
 
   return (
     <div>
-      <h4>Todo</h4>
+      <h4>Link</h4>
       <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor='link'>Link:</label>
+          <input
+            type='text'
+            id='link'
+            name='link'
+            value={formData.link}
+            onChange={handleChange}
+            className='rounded-md border p-2'
+          />
+        </div>
+
         <div>
           <label htmlFor='description'>Description:</label>
           <input
@@ -66,18 +75,7 @@ export default function TodoForm() {
             className='rounded-md border p-2'
           />
         </div>
-        <div>
-          <label htmlFor='done'>
-            <input
-              type='checkbox'
-              id='done'
-              name='done'
-              checked={formData.done}
-              onChange={handleChange}
-            />
-            Done
-          </label>
-        </div>
+
         <div>
           <button
             type='submit'
