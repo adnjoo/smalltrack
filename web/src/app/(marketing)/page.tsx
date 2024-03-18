@@ -1,11 +1,10 @@
 import { auth } from '@clerk/nextjs';
 
-import Card from '@/app/components/Card';
-import Bokeh from '@/app/components/design/Bokeh';
-import Bokeh2 from '@/app/components/design/Bokeh2';
-import MySignInButton from '@/app/components/MySignInButton';
-import LinkForm from '@/app/components/LinkForm';
-import Links from '@/app/components/Links';
+import Bokeh from '@/app/components/atoms/Bokeh';
+import Bokeh2 from '@/app/components/atoms/Bokeh2';
+import MySignInButton from '@/app/components/atoms/MySignInButton';
+import LinkForm from '@/app/components/molecules/LinkForm';
+import Links from '@/app/components/molecules/Links';
 
 export default function Landing() {
   const { userId } = auth();
@@ -22,8 +21,6 @@ export default function Landing() {
             <p className='mt-6 text-lg leading-8 text-gray-600'>
               Spend less time tracking and more time engaging.
             </p>
-
-            <Card />
 
             <div className='mt-10 flex items-center justify-center gap-x-6'>
               <MySignInButton>
