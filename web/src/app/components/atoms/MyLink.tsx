@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '@clerk/nextjs';
 import { useQuery } from '@tanstack/react-query';
+import moment from 'moment';
 
 import { API_URL } from '@/app/lib/constants';
 
@@ -120,7 +121,7 @@ export default function MyLink({ link }: MyLinkProps) {
             {link.link}
           </a>
           <p>{link.description}</p>
-          <p>{new Date(link.date).toISOString().slice(0, 10)}</p>
+          {moment(link.date).format('dddd MMM D, YYYY')}
 
           <button
             onClick={() => handleEdit(link)}

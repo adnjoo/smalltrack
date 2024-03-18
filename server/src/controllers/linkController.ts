@@ -13,6 +13,9 @@ export const getLinks = async (
       where: {
         clerkUserId: req.auth.userId as string,
       },
+      orderBy: {
+        date: "desc",
+      }
     });
 
     res.json(links);
