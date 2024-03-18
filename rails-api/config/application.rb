@@ -1,3 +1,4 @@
+
 require_relative "boot"
 
 require "rails/all"
@@ -8,6 +9,9 @@ Bundler.require(*Rails.groups)
 
 module RailsApi
   class Application < Rails::Application
+    # Enable the API only server
+    config.api_only = true
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
