@@ -11,7 +11,7 @@ export type MyLinkProps = {
   link: any;
 };
 
-export const dateOptions = {
+export const dateOptions: Intl.DateTimeFormatOptions = {
   weekday: 'short',
   month: 'long',
   day: 'numeric',
