@@ -11,6 +11,7 @@ export default function LinkForm() {
   const [formData, setFormData] = useState({
     description: '',
     link: '',
+    date: new Date().toISOString().slice(0, 10),
   });
   const { getToken } = useAuth();
   const { refetch } = useQuery({
@@ -40,6 +41,7 @@ export default function LinkForm() {
       setFormData({
         description: '',
         link: '',
+        date: new Date().toISOString().slice(0, 10),
       });
 
       refetch();
@@ -63,6 +65,16 @@ export default function LinkForm() {
             className='rounded-md border p-2'
           />
         </div>
+
+        <label htmlFor='date'>Date:</label>
+        <input
+          type='date'
+          id='date'
+          name='date'
+          value={formData.date}
+          onChange={handleChange}
+          className='rounded-md border p-2'
+        />
 
         <div>
           <label htmlFor='description'>Description:</label>
