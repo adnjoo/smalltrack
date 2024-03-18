@@ -22,6 +22,11 @@ create db
 bin/rails db:create
 ```
 
+migrate
+```
+bin/rails db:migrate
+```
+
 ---
 
 https://guides.rubyonrails.org/api_app.html
