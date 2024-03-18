@@ -12,7 +12,7 @@ CREATE TABLE "InstagramPost" (
 CREATE TABLE "Link" (
     "id" SERIAL NOT NULL,
     "link" TEXT NOT NULL,
-    "date" TIMESTAMP(3) NOT NULL,
+    "date" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "project" TEXT,
     "clerkUserId" TEXT,

@@ -57,7 +57,7 @@ export const upsertLink = async (
     } else {
       dbLink = await prisma.link.create({
         data: {
-          date: new Date(),
+          date,
           description,
           link,
           clerkUserId: req.auth.userId as string,

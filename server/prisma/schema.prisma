@@ -18,7 +18,7 @@ model InstagramPost {
 model Link {
   id          Int        @id @default(autoincrement())
   link        String
-  date        DateTime
+  date        String
   description String
   project     String?
   clerkUserId String?

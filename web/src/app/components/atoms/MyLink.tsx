@@ -11,19 +11,12 @@ export type MyLinkProps = {
   link: any;
 };
 
-export const dateOptions: Intl.DateTimeFormatOptions = {
-  weekday: 'short',
-  month: 'long',
-  day: 'numeric',
-  year: 'numeric',
-};
-
 export default function MyLink({ link }: MyLinkProps) {
   const [editLink, setEditLink] = useState<any>({
-    id: null,
-    link: '',
-    description: '',
-    date: new Date().toISOString().slice(0, 10),
+    id: link?.id,
+    link: link?.link,
+    description: link?.description,
+    date: link?.date,
   });
   const [editMode, setEditMode] = useState<boolean>(false);
   const { getToken } = useAuth();
@@ -98,7 +91,7 @@ export default function MyLink({ link }: MyLinkProps) {
           <label htmlFor='date'>Date:</label>
           <input
             type='date'
-            value={editLink.date}
+            value={new Date(editLink.date).toISOString().slice(0, 10)}
             onChange={(e) => setEditLink({ ...editLink, date: e.target.value })}
             className='mt-1 block w-full rounded-md border-gray-300'
           />
@@ -127,7 +120,7 @@ export default function MyLink({ link }: MyLinkProps) {
             {link.link}
           </a>
           <p>{link.description}</p>
-          <p>{new Date(link.date).toLocaleDateString('en-US', dateOptions)}</p>
+          <p>{new Date(link.date).toISOString().slice(0, 10)}</p>
 
           <button
             onClick={() => handleEdit(link)}

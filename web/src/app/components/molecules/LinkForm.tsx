@@ -32,7 +32,9 @@ export default function LinkForm() {
     const token = await getToken();
 
     try {
-      const response = await axios.post(`${API_URL}/links/upsert`, formData, {
+      const response = await axios.post(`${API_URL}/links/upsert`, {
+        ...formData,
+      }, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -49,6 +51,8 @@ export default function LinkForm() {
       console.error('Error submitting form:', error);
     }
   };
+
+  console.log('formData', formData);
 
   return (
     <div>
