@@ -16,3 +16,12 @@ see available middleware
 ```
 bin/rails middleware
 ```
+
+create db
+```
+bin/rails db:create
+```
+
+---
+
+https://guides.rubyonrails.org/api_app.html
