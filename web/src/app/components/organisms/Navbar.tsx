@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { UserButton, SignedIn, SignedOut } from '@clerk/nextjs';
-import MySignInButton from '@/app/components/MySignInButton';
+import MySignInButton from '@/app/components/atoms/MySignInButton';
 import { APP_NAME } from '@/app/lib/constants';
 
 const navigation = [

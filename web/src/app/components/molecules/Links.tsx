@@ -6,7 +6,7 @@ import { useAuth } from '@clerk/nextjs';
 import { useQuery } from '@tanstack/react-query';
 
 import { API_URL } from '@/app/lib/constants';
-import MyLink from '@/app/components/MyLink';
+import MyLink from '@/app/components/atoms/MyLink';
 
 export default function Links() {
   const { getToken } = useAuth();
